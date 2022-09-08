@@ -1,15 +1,18 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Container from '@mui/material/Container';
 import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import UserForm from '../../Components/UserForm'
+import { 
+  Grid,
+  Button,
+  Container,
+  Table,
+  TableBody,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper 
+} from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,51 +38,79 @@ function createData(name, email, department, location, id) {
   return { name, email, department, location, id };
 }
 
+//dummy data
 const rows = [
   createData('Jepoy Factoran', 'john.factoran@awsys-i.com', 'Dev F', 'Alabang'),
   createData('Christian Gil Aquino', 'christian.aquino@awsys-i.com', 'Dev F', 'Makati'),
 ];
 
-export default function index() {
+export default function Index() {
+  const [userFormState, setUserFormState] = React.useState(false);
+  const [tableState, setTableState] = React.useState(true);
+  const [createButtonState, setCreateButtonState] = React.useState(true);
+
+  const handleClick = (e) => {
+    setUserFormState(current => !current);
+    setTableState(current => !current);
+    setCreateButtonState(current => !current);
+  };
+
   return (
-    <Box sx={{ mt:4 }}>
-      <Container>
-        <Button variant="outlined" sx={{ mb:4 }}>Create</Button>
-        <TableContainer component={Paper}>
-          <Table sx={{ minWidth: 700 }} aria-label="customized table">
-            <TableHead>
-              <TableRow>
-                <StyledTableCell>Name</StyledTableCell>
-                <StyledTableCell align="center">Email</StyledTableCell>
-                <StyledTableCell align="center">Department</StyledTableCell>
-                <StyledTableCell align="center">Location</StyledTableCell>
-                <StyledTableCell align="center">Action</StyledTableCell>
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {rows.map((row) => (
-                <StyledTableRow key={row.name}>
-                  <StyledTableCell component="th" scope="row">
-                    {row.name}
-                  </StyledTableCell>
-                  <StyledTableCell align="center">{row.email}</StyledTableCell>
-                  <StyledTableCell align="center">{row.department}</StyledTableCell>
-                  <StyledTableCell align="center">{row.location}</StyledTableCell>
-                  <StyledTableCell align="center">
-                    <Button variant="contained">
-                      edit
-                    </Button>
-                    &ensp;
-                    <Button variant="contained" color="error">
-                      delete
-                    </Button>
-                  </StyledTableCell>
-                </StyledTableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+    <>
+      <Container sx={{ mt:4 }}>
+        <Button variant="contained" sx={{ mb:4 }} onClick={handleClick}>
+          {
+            createButtonState ? 'Create' : 'Cancel'
+          }
+        </Button>
       </Container>
-    </Box>
+      {
+        tableState &&
+        <Container>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>Name</StyledTableCell>
+                  <StyledTableCell align="center">Email</StyledTableCell>
+                  <StyledTableCell align="center">Department</StyledTableCell>
+                  <StyledTableCell align="center">Location</StyledTableCell>
+                  <StyledTableCell align="center">Action</StyledTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {rows.map((row) => (
+                  <StyledTableRow key={row.name}>
+                    <StyledTableCell component="th" scope="row">
+                      {row.name}
+                    </StyledTableCell>
+                    <StyledTableCell align="center">{row.email}</StyledTableCell>
+                    <StyledTableCell align="center">{row.department}</StyledTableCell>
+                    <StyledTableCell align="center">{row.location}</StyledTableCell>
+                    <StyledTableCell align="center">
+                      <Button variant="outlined">
+                        edit
+                      </Button>
+                      &ensp;
+                      <Button variant="outlined" color="error">
+                        delete
+                      </Button>
+                    </StyledTableCell>
+                  </StyledTableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Container> 
+      }
+      <Grid container spacing={0} direction="column" alignItems="center">
+        <Grid item xs={3}>
+          {
+            userFormState && 
+            <UserForm></UserForm>
+          }
+        </Grid>   
+      </Grid> 
+    </>
   );
 }

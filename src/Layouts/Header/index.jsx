@@ -6,7 +6,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-export default function index() {
+export default function Index() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
