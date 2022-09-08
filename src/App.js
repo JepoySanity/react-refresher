@@ -1,6 +1,6 @@
-import Header from "./Layouts/Header"
-import Footer from "./Layouts/Footer"
-import Home from "./Pages/Home"
+import Header from "./Layouts/Header/Index"
+import Footer from "./Layouts/Footer/Index"
+import Home from "./Pages/Home/Index"
 
 function App() {
   return (
