@@ -13,7 +13,7 @@ export default function index() {
         <Container>
           <Toolbar>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              User Management System
+              Developer Management System
             </Typography>
             <Button color="inherit">Logout</Button>
           </Toolbar>

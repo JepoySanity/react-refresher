@@ -44,6 +44,7 @@ export default function index() {
   return (
     <Box sx={{ mt:4 }}>
       <Container>
+        <Button variant="outlined" sx={{ mb:4 }}>Create</Button>
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 700 }} aria-label="customized table">
             <TableHead>
