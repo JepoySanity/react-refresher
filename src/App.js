@@ -1,6 +1,14 @@
+import Header from "./Layouts/Header"
+import Footer from "./Layouts/Footer"
+import Home from "./Pages/Home"
+
 function App() {
   return (
-    <h1>Hello world</h1>
+    <>
+    <Header/>
+      <Home/>
+    <Footer/>
+    </>
   );
 }
 
