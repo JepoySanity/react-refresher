@@ -13,6 +13,8 @@ import {
   Paper 
 } from '@mui/material';
 import UserForm from '../../Components/UserForm'
+import Header from '../../Layouts/Header/Index'
+import Footer from '../../Layouts/Footer/Index'
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -57,60 +59,62 @@ export default function Index() {
 
   return (
     <>
-      <Container sx={{ mt:4 }}>
-        <Button variant="contained" sx={{ mb:4 }} onClick={handleClick}>
-          {
-            createButtonState ? 'Create' : 'Cancel'
-          }
-        </Button>
-      </Container>
-      {
-        tableState &&
-        <Container>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
-              <TableHead>
-                <TableRow>
-                  <StyledTableCell>Name</StyledTableCell>
-                  <StyledTableCell align="center">Email</StyledTableCell>
-                  <StyledTableCell align="center">Department</StyledTableCell>
-                  <StyledTableCell align="center">Location</StyledTableCell>
-                  <StyledTableCell align="center">Action</StyledTableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <StyledTableRow key={row.name}>
-                    <StyledTableCell component="th" scope="row">
-                      {row.name}
-                    </StyledTableCell>
-                    <StyledTableCell align="center">{row.email}</StyledTableCell>
-                    <StyledTableCell align="center">{row.department}</StyledTableCell>
-                    <StyledTableCell align="center">{row.location}</StyledTableCell>
-                    <StyledTableCell align="center">
-                      <Button variant="outlined">
-                        edit
-                      </Button>
-                      &ensp;
-                      <Button variant="outlined" color="error">
-                        delete
-                      </Button>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </Container> 
-      }
-      <Grid container spacing={0} direction="column" alignItems="center">
-        <Grid item xs={3}>
-          {
-            userFormState && 
-            <UserForm></UserForm>
-          }
-        </Grid>   
-      </Grid> 
+      <Header/>
+        <Container sx={{ mt:4 }}>
+          <Button variant="contained" sx={{ mb:4 }} onClick={handleClick}>
+            {
+              createButtonState ? 'Create' : 'Cancel'
+            }
+          </Button>
+        </Container>
+        {
+          tableState &&
+          <Container>
+            <TableContainer component={Paper}>
+              <Table sx={{ minWidth: 700 }} aria-label="customized table">
+                <TableHead>
+                  <TableRow>
+                    <StyledTableCell>Name</StyledTableCell>
+                    <StyledTableCell align="center">Email</StyledTableCell>
+                    <StyledTableCell align="center">Department</StyledTableCell>
+                    <StyledTableCell align="center">Location</StyledTableCell>
+                    <StyledTableCell align="center">Action</StyledTableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <StyledTableRow key={row.name}>
+                      <StyledTableCell component="th" scope="row">
+                        {row.name}
+                      </StyledTableCell>
+                      <StyledTableCell align="center">{row.email}</StyledTableCell>
+                      <StyledTableCell align="center">{row.department}</StyledTableCell>
+                      <StyledTableCell align="center">{row.location}</StyledTableCell>
+                      <StyledTableCell align="center">
+                        <Button variant="outlined">
+                          edit
+                        </Button>
+                        &ensp;
+                        <Button variant="outlined" color="error">
+                          delete
+                        </Button>
+                      </StyledTableCell>
+                    </StyledTableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Container> 
+        }
+        <Grid container spacing={0} direction="column" alignItems="center">
+          <Grid item xs={3}>
+            {
+              userFormState && 
+              <UserForm></UserForm>
+            }
+          </Grid>   
+        </Grid> 
+      <Footer/>
     </>
   );
 }

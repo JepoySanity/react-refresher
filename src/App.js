@@ -1,13 +1,20 @@
-import Header from "./Layouts/Header/Index"
-import Footer from "./Layouts/Footer/Index"
 import Home from "./Pages/Home/Index"
+import Login from "./Pages/Login/Index"
+import {
+  BrowserRouter,
+  Routes,
+  Route
+} from "react-router-dom"
 
 function App() {
   return (
     <>
-    <Header/>
-      <Home/>
-    <Footer/>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={ <Login/> } />
+          <Route path="/home" element={ <Home/> } />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
